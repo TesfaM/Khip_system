@@ -786,30 +786,11 @@
             <?php }
             if ($this->aauth->premission(4)) {
                 ?>
-                <li class="menu-item  has-sub <?php if ($this->li_a == "project") {
-                    echo ' open';
-                } ?>"><a href="#"><i
-                                class="icon-briefcase"></i><span><?= $this->lang->line('Project') ?></span></a>
-                    <ul class="menu-content">
-                        <li class="menu-item"><a href="#"><i
-                                        class="icon-calendar"></i> <?php echo $this->lang->line('Project Management') ?>
-                            </a>
-                            <ul class="menu-content">
-                                <li class="menu-item"><a
-                                            href="<?php echo base_url(); ?>projects/addproject"><?php echo $this->lang->line('New Project') ?></a>
-                                </li>
-                                <li class="menu-item"><a
-                                            href="<?php echo base_url(); ?>projects"><?= $this->lang->line('Manage Projects'); ?></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item">
-                            <a href="<?php echo base_url(); ?>tools/todo"><i
-                                        class="icon-list"></i> <?php echo $this->lang->line('To Do List'); ?></a>
-                        </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url(); ?>projects"><i
+                    class="icon-briefcase"></i> <?php echo $this->lang->line('Project'); ?></a>
+                 </li>
 
-                    </ul>
-                </li>
             <?php }
             if (!$this->aauth->premission(4) && $this->aauth->premission(7)) {
                 ?>
