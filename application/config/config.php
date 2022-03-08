@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://localhost:8000/';
+$config['base_url'] = 'https://system.kehaiskepe.com/';
 
 /*
 |--------------------------------------------------------------------------
@@ -316,7 +316,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'bfda37846696770';
+$config['encryption_key'] = '029dea9337af670';
 
 /*
 |--------------------------------------------------------------------------

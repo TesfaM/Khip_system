@@ -5,8 +5,8 @@ $active_group = 'default';
 $query_builder = TRUE;
 $hostname ='127.0.0.1';
 $username ='root';
-$password ='mypassword';
-$database ='khip_db';	
+$password ='&cn}&dKipWM1';
+$database ='kehaiskepecom_khip';	
 
 $db['default'] = array(
 	'dsn'	=> '',
