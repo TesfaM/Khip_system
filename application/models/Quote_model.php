@@ -112,12 +112,14 @@ class Quote_model extends CI_Model
     }
 
 
-    private function _get_datatables_query($eid)
+    private function _get_datatables_query($eid = '')
     {
 
         $this->db->select('geopos_quotes.id,geopos_quotes.tid,geopos_quotes.invoicedate,geopos_quotes.invoiceduedate,geopos_quotes.total,geopos_quotes.status,geopos_customers.name');
         $this->db->from($this->table);
-        if ($eid) $this->db->where('geopos_quotes.eid', $eid);
+        if ($eid){
+         $this->db->where('geopos_quotes.eid', $eid);
+        }
                 if ($this->aauth->get_user()->loc) {
             $this->db->where('geopos_quotes.loc', $this->aauth->get_user()->loc);
         }

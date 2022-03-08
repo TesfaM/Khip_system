@@ -104,12 +104,83 @@ class Customers_model extends CI_Model
         }
     }
 
+    private function _get_my_datatables_query()
+    {
+       
+        $due = $this->input->post('due');
+        if ($due) {
+
+            $this->db->select('geopos_customers.*,SUM(geopos_invoices.total) AS total,SUM(geopos_invoices.pamnt) AS pamnt');
+            $this->db->from('geopos_invoices');
+            $this->db->where('geopos_invoices.status!=', 'paid');
+            $this->db->join('geopos_customers', 'geopos_customers.id = geopos_invoices.csd', 'left');
+            //if ($this->aauth->get_user()->id) {
+                $this->db->where('account_manager', $this->aauth->get_user()->id);
+            // } elseif (!BDATA) {
+            //     $this->db->where('account_manager', 0);
+            // }
+
+            $this->db->group_by('geopos_invoices.csd');
+            $this->db->order_by('total', 'desc');
+
+        } else {
+            $this->db->from($this->table);
+            //if (8) {
+                $this->db->where('account_manager', $this->aauth->get_user()->id);
+            // } elseif (!BDATA) {
+            //     $this->db->where('account_manager', 0);
+            // }
+
+
+        }
+        $i = 0;
+
+        foreach ($this->column_search as $item) // loop column
+        {
+            $search = $this->input->post('search');
+            $value = $search['value'];
+            if ($value) // if datatable send POST for search
+            {
+
+                if ($i === 0) // first loop
+                {
+                    $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+                    $this->db->like($item, $value);
+                } else {
+                    $this->db->or_like($item, $value);
+                }
+
+                if (count($this->column_search) - 1 == $i) //last loop
+                    $this->db->group_end(); //close bracket
+            }
+            $i++;
+        }
+        $search = $this->input->post('order');
+        if ($search) // here order processing
+        {
+            $this->db->order_by($this->column_order[$search['0']['column']], $search['0']['dir']);
+        } else if (isset($this->order)) {
+            $order = $this->order;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
+    }
+
     function get_datatables($id = '')
     {
         $this->_get_datatables_query($id);
         if ($this->aauth->get_user()->loc) {
            // $this->db->where('loc', $this->aauth->get_user()->loc);
         }
+        if ($this->input->post('length') != -1)
+            $this->db->limit($this->input->post('length'), $this->input->post('start'));
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function get_mycleint_datatables()
+    {
+        $this->_get_my_datatables_query();
+        
         if ($this->input->post('length') != -1)
             $this->db->limit($this->input->post('length'), $this->input->post('start'));
         $query = $this->db->get();
@@ -181,7 +252,7 @@ class Customers_model extends CI_Model
     }
 
 
-    public function add($name, $company, $phone, $email, $address, $city, $region, $country, $postbox, $customergroup, $taxid, $name_s, $phone_s, $email_s, $address_s, $city_s, $region_s, $country_s, $postbox_s, $language = '', $create_login = true, $password = '', $docid = '', $custom = '', $discount = 0)
+    public function add($name, $company, $phone, $email, $address, $city, $region, $country, $postbox, $customergroup, $taxid, $name_s, $phone_s, $email_s, $address_s, $city_s, $region_s, $country_s, $postbox_s, $language = '', $create_login = true, $password = '', $docid = '', $custom = '', $discount = 0, $accountManager = 0)
     {
         $this->db->select('email');
         $this->db->from('geopos_customers');
@@ -223,7 +294,8 @@ class Customers_model extends CI_Model
                 'postbox_s' => $postbox_s,
                 'docid' => $docid,
                 'custom1' => $custom,
-                'discount_c' => $discount
+                'discount_c' => $discount,
+                'account_manager' => $accountManager
             );
 
 

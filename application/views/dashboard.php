@@ -240,10 +240,10 @@
                                     class="btn btn-primary btn-sm rounded"><?php echo $this->lang->line('Add Sale') ?></a>
                                 <a
                                         href="<?php echo base_url() ?>invoices"
-                                        class="btn btn-success btn-sm rounded"><?php echo $this->lang->line('Manage Invoices') ?></a>
-                                <a
+                                        class="btn btn-success btn-sm rounded"><?php echo $this->lang->line('Manage Invoices') ?></a></span>
+                                <!-- <a
                                         href="<?php echo base_url() ?>pos_invoices"
-                                        class="btn btn-blue btn-sm rounded"><?php echo $this->lang->line('POS') ?></a></span>
+                                        class="btn btn-blue btn-sm rounded"><?php echo $this->lang->line('POS') ?></a></span> -->
                     </p>
                 </div>
             </div>

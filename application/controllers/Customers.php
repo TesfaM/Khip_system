@@ -46,6 +46,16 @@ class Customers extends CI_Controller
         $this->load->view('fixed/footer');
     }
 
+    public function indexMyclient()
+    {
+        $head['usernm'] = $this->aauth->get_user()->username;
+        $head['title'] = 'Customers';
+        $this->load->view('fixed/header', $head);
+        $this->load->view('customers/myclientList');
+        $this->load->view('fixed/footer');
+    }
+
+
     public function create()
     {
         $this->load->library("Common");
@@ -61,9 +71,9 @@ class Customers extends CI_Controller
 
     public function view()
     {
-        if (!$this->aauth->premission(8)) {
-            exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
-        }
+        // if (!$this->aauth->premission(8)) {
+        //     exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
+        // }
         $custid = $this->input->get('id');
         $data['details'] = $this->customers->details($custid);
         $data['customergroup'] = $this->customers->group_info($data['details']['gid']);
@@ -122,13 +132,55 @@ class Customers extends CI_Controller
         echo json_encode($output);
     }
 
+    public function myclient_list()
+    {
+        $no = $this->input->post('start');
 
+        $list = $this->customers->get_mycleint_datatables();
+        $data = array();
+        if ($this->input->post('due')) {
+            foreach ($list as $customers) {
+                $no++;
+                $row = array();
+                $row[] = $no . ' <input type="checkbox" name="cust[]" class="checkbox" value="' . $customers->id . '"> ';
+                $row[] = '<span class="avatar-sm align-baseline"><img class="rounded-circle" src="' . base_url() . 'userfiles/customers/thumbnail/' . $customers->picture . '" ></span> &nbsp;<a href="customers/view?id=' . $customers->id . '">' . $customers->name . '</a>';
+                $row[] = amountExchange($customers->total - $customers->pamnt, 0, $this->aauth->get_user()->loc);
+                $row[] = $customers->address . ',' . $customers->city . ',' . $customers->country;
+                $row[] = $customers->email;
+                $row[] = $customers->phone;
+                $row[] = '<a href="view?id=' . $customers->id . '" class="btn btn-info btn-sm"><span class="fa fa-eye"></span>  ' . $this->lang->line('View') . '</a> <a href="]edit?id=' . $customers->id . '" class="btn btn-primary btn-sm"><span class="fa fa-pencil"></span>  ' . $this->lang->line('Edit') . '</a> <a href="#" data-object-id="' . $customers->id . '" class="btn btn-danger btn-sm delete-object"><span class="fa fa-trash"></span></a>';
+                $data[] = $row;
+            }
+        } else {
+            foreach ($list as $customers) {
+                $no++;
+                $row = array();
+                $row[] = $no . ' <input type="checkbox" name="cust[]" class="checkbox" value="' . $customers->id . '"> ';
+                $row[] = '<span class="avatar-sm align-baseline"><img class="rounded-circle" src="' . base_url() . 'userfiles/customers/thumbnail/' . $customers->picture . '" ></span> &nbsp;<a href="customers/view?id=' . $customers->id . '">' . $customers->name . '</a>';
+                $row[] = $customers->address . ',' . $customers->city . ',' . $customers->country;
+                $row[] = "$customers->email";
+                $row[] = $customers->phone;
+                $row[] = '<a href="view?id=' . $customers->id . '" class="btn btn-info btn-sm"><span class="fa fa-eye"></span>  ' . $this->lang->line('View') . '</a> <a href="edit?id=' . $customers->id . '" class="btn btn-primary btn-sm"><span class="fa fa-pencil"></span>  ' . $this->lang->line('Edit') . '</a> <a href="#" data-object-id="' . $customers->id . '" class="btn btn-danger btn-sm delete-object"><span class="fa fa-trash"></span></a>';
+                $data[] = $row;
+            }
+        }
+
+
+        $output = array(
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->customers->count_all(),
+            "recordsFiltered" => $this->customers->count_filtered(),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+    }
     //edit section
     public function edit()
     {
-        if (!$this->aauth->premission(8)) {
-            exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
-        }
+        // if (!$this->aauth->premission(8)) {
+        //     exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
+        // }
         $this->load->library("Common");
         $pid = $this->input->get('id');
         $data['customer'] = $this->customers->details($pid);
@@ -170,7 +222,9 @@ class Customers extends CI_Controller
         $docid = $this->input->post('docid', true);
         $custom = $this->input->post('c_field', true);
         $discount = $this->input->post('discount', true);
-        $this->customers->add($name, $company, $phone, $email, $address, $city, $region, $country, $postbox, $customergroup, $taxid, $name_s, $phone_s, $email_s, $address_s, $city_s, $region_s, $country_s, $postbox_s, $language, $create_login, $password, $docid, $custom, $discount);
+        // add account manager on registering client
+        $accountManager =  $this->aauth->get_user()->id;
+        $this->customers->add($name, $company, $phone, $email, $address, $city, $region, $country, $postbox, $customergroup, $taxid, $name_s, $phone_s, $email_s, $address_s, $city_s, $region_s, $country_s, $postbox_s, $language, $create_login, $password, $docid, $custom, $discount, $accountManager);
 
 
     }

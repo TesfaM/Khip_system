@@ -96,6 +96,16 @@ class Quote extends CI_Controller
         $this->load->view('fixed/footer');
     }
 
+
+    public function myquote()
+    {
+        $head['title'] = "Manage Quote";
+        $data['eid'] = $this->aauth->get_user()->id;
+        $head['usernm'] = $this->aauth->get_user()->username;
+        $this->load->view('fixed/header', $head);
+        $this->load->view('quotes/myquotes', $data);
+        $this->load->view('fixed/footer');
+    }
     //action
     public function action()
     {
@@ -222,9 +232,43 @@ class Quote extends CI_Controller
     public function ajax_list()
     {
         $eid = 0;
-        if ($this->aauth->premission(9)) {
+         if ($this->aauth->premission(9)) {
             $eid = $this->input->post('eid');
+         }
+        $list = $this->quote->get_datatables($eid);
+        $data = array();
+        $no = $this->input->post('start');
+        foreach ($list as $invoices) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = '<a href="' . base_url("quote/view?id=$invoices->id") . '">&nbsp; ' . $invoices->tid . '</a>';
+            $row[] = $invoices->name;
+            $row[] = dateformat($invoices->invoicedate);
+            $row[] = amountExchange($invoices->total, 0, $this->aauth->get_user()->loc);
+            $row[] = '<span class="badge st-' . $invoices->status . '">' . $this->lang->line(ucwords($invoices->status)) . '</span>';
+            $row[] = '<a href="' . base_url("quote/view?id=$invoices->id") . '" class="btn btn-blue btn-sm"><i class="fa fa-eye"></i></a> &nbsp; <a href="' . base_url("quote/printquote?id=$invoices->id") . '&d=1" class="btn btn-info btn-sm"  title="Download"><span class="fa fa-download"></span></a>&nbsp;<a href="#" data-object-id="' . $invoices->id . '" class="btn btn-danger btn-sm delete-object"><span class="fa fa-trash"></span></a>';
+            $data[] = $row;
         }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->quote->count_all($eid),
+            "recordsFiltered" => $this->quote->count_filtered($eid),
+            "data" => $data,
+        );
+        //output to json format
+        echo json_encode($output);
+
+    }
+
+
+    public function myquatation_list()
+    {
+
+
+        $eid = $this->aauth->get_user()->id;
+        
         $list = $this->quote->get_datatables($eid);
         $data = array();
         $no = $this->input->post('start');

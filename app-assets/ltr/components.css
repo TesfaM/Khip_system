@@ -39,7 +39,7 @@ html {
       padding-left: 0;
       padding-right: 0; }
     html body.bg-full-screen-image {
-      background: url(../../app-assets/images/backgrounds/bg-2.jpg) no-repeat center center fixed;
+      background: url(../../app-assets/images/backgrounds/bg-15.png) no-repeat center center fixed;
       -webkit-background-size: cover;
       background-size: cover; }
     html body .pace .pace-progress {

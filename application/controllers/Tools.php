@@ -244,11 +244,11 @@ class Tools extends CI_Controller
 
     public function setgoals()
     {
-        if ($this->aauth->get_user()->roleid < 5) {
+        // if ($this->aauth->get_user()->roleid < 5) {
 
-            exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
+        //     exit('<h3>Sorry! You have insufficient permissions to access this section</h3>');
 
-        }
+        // }
         $this->li_a = 'company';
         if ($this->input->post('income')) {
 

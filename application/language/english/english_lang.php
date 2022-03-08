@@ -537,7 +537,7 @@ $lang['Stopped'] = "Stopped";
 $lang['In Stock'] = "In Stock";
 $lang['Stock out'] = "Stock out";
 $lang['Projects'] = "Projects";
-$lang['Project'] = "Opration";
+$lang['Project'] = "Project";
 $lang['delete this project'] = "Are you sure you want to delete this project and related content?";
 $lang['New Project'] = "New Project";
 $lang['Manage Projects'] = "Manage Projects";
@@ -643,12 +643,12 @@ $lang['Bank'] = "Bank";
 $lang['Purchase order success'] = "The purchase order has been created successfully!";
 $lang['Stock order success'] = "Stock return order has been created successfully!";
 $lang['Statements'] = "Statements";
-$lang['Business Owner'] = "Business Owner";
+$lang['Business Owner'] = "Super Admin";
 $lang['Business Manager'] = "Business Manager";
-$lang['Sales Manager'] = "Sales Manager";
+$lang['Sales Manager'] = "Finace";
 $lang['Sales Person'] = "Sales Person";
 $lang['Inventory Manager'] = "Inventory Manager";
-$lang['Project Manager'] = "Project Manager";
+$lang['Project Manager'] = "Opration Manager";
 $lang['Repeat on'] = "Repeat on";
 $lang['Add Event'] = "Add Event";
 $lang['Disable'] = "Disable";
@@ -931,3 +931,14 @@ $lang['POS_Settings'] = "POS Settings";
 $lang['AllowAssignEmployee'] = "Allow to Assign Employee";
 $lang['SelfCustomerRegistration'] = "Customer Self Registration";
 $lang['Register Customer'] = "Register Customer";
+
+$lang['MyQuotes'] = "My Quotes";
+$lang['MyInvoice'] = "My Invoice";
+
+$lang['ListClients'] = "Database";
+$lang['MyClient'] = "My Client";
+$lang['Client'] = "Client";
+
+$lang['MyProject'] = "My Project";
+
+

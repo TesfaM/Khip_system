@@ -65,14 +65,25 @@ class Dashboard extends CI_Controller
             $this->load->view('dashboard', $data);
             $this->load->view('fixed/footer');
         } else if ($this->aauth->premission(4)) {
-            $this->load->model('projects_model', 'projects');
-            $head['usernm'] = $this->aauth->get_user()->username;
-            $head['title'] = 'Project List';
-            $data['totalt'] = $this->projects->project_count_all();
-
-            $this->load->view('fixed/header', $head);
-            $this->load->view('projects/index', $data);
-            $this->load->view('fixed/footer');
+            if($this->aauth->get_user()->roleid == -1){
+                $this->load->model('projects_model', 'projects');
+                $head['usernm'] = $this->aauth->get_user()->username;
+                $head['title'] = 'Projects List';
+                $data['totalt'] = $this->projects->project_count_all();
+    
+                $this->load->view('fixed/header', $head);
+                $this->load->view('products/products', $data);
+                $this->load->view('fixed/footer');
+            }else{
+                $this->load->model('projects_model', 'projects');
+                $head['usernm'] = $this->aauth->get_user()->username;
+                $head['title'] = 'Sales List';
+                $data['totalt'] = $this->projects->project_count_all();
+    
+                $this->load->view('fixed/header', $head);
+                $this->load->view('invoices/invoices', $data);
+                $this->load->view('fixed/footer');
+            }
         } else if ($this->aauth->get_user()->roleid == 1) {
             $head['title'] = "Products";
             $head['usernm'] = $this->aauth->get_user()->username;

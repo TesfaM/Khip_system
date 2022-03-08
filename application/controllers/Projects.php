@@ -365,9 +365,9 @@ class Projects extends CI_Controller
     {
         $cday = $this->input->get('cday');
         $eid = 0;
-        if ($this->aauth->premission(9)) {
+        //if ($this->aauth->premission(9)) {
             $eid = $this->input->post('eid');
-        }
+        //}
         $list = $this->projects->project_datatables($cday, $eid);
         $data = array();
         $no = $this->input->post('start');

@@ -111,13 +111,12 @@
                 <?php datatable_lang();?>
                 'order': [],
                 'ajax': {
-                    'url': "<?php echo site_url('quote/ajax_list')?>",
+                    'url': "<?php echo site_url('quote/myquatation_list')?>",
                     'type': 'POST',
                     'data': {
                         '<?=$this->security->get_csrf_token_name()?>': crsf_hash,
                         start_date: start_date,
                         end_date: end_date,
-                        'eid':<?=$eid ?>
                     }
                 },
                 'columnDefs': [
