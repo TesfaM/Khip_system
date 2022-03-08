@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
-$hostname ='127.0.0.1';
-$username ='root';
+$hostname ='localhost';
+$username ='kehaiskepecom_kehaiskepecom';
 $password ='&cn}&dKipWM1';
 $database ='kehaiskepecom_khip';	
 
