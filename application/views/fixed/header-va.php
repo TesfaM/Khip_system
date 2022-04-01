@@ -618,8 +618,8 @@
                         </li>
                         <li class="menu-item"><a href="<?php echo base_url(); ?>accounts/balancesheet"><?= $this->lang->line('BalanceSheet'); ?></a>
                         </li>
-                        <li class="menu-item"><a href="<?php echo base_url(); ?>reports/accountstatement"><?= $this->lang->line('Account Statements'); ?></a>
-                        </li>
+                        <!-- <li class="menu-item"><a href="<?php echo base_url(); ?>reports/accountstatement"><?= $this->lang->line('Account Statements'); ?></a>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="menu-item"><a href="#"><i class="icon-wallet"></i> <?php echo $this->lang->line('Transactions') ?></a>
@@ -634,8 +634,8 @@
                         </li>
                         <li class="menu-item"><a href="<?php echo base_url(); ?>transactions/expense"><?= $this->lang->line('Expense'); ?></a>
                         </li>
-                        <li class="menu-item"><a href="<?php echo base_url(); ?>customers"><?= $this->lang->line('Clients Transactions'); ?></a>
-                        </li>
+                        <!-- <li class="menu-item"><a href="<?php echo base_url(); ?>customers"><?= $this->lang->line('Clients Transactions'); ?></a>
+                        </li> -->
                     </ul>
                 </li>
 
@@ -651,16 +651,16 @@
                                         } ?>"><a href="#"><i class="icon-pie-chart"></i>
                 <span><?php echo $this->lang->line('Data & Reports') ?></span></a>
             <ul class="menu-content">
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="<?php echo base_url(); ?>register"><i class="icon-eyeglasses"></i> <?php echo $this->lang->line('Business Registers'); ?>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="menu-item"><a href="#"><i class="icon-doc"></i> <?php echo $this->lang->line('Statements') ?></a>
                     <ul class="menu-content">
 
-                        <li class="menu-item"><a href="<?php echo base_url(); ?>reports/accountstatement"><?= $this->lang->line('Account Statements'); ?></a>
-                        </li>
+                        <!-- <li class="menu-item"><a href="<?php echo base_url(); ?>reports/accountstatement"><?= $this->lang->line('Account Statements'); ?></a>
+                        </li> -->
                         <li class="menu-item"><a href="<?php echo base_url(); ?>reports/customerstatement"><?php echo $this->lang->line('Customer_Account_Statements') ?></a>
                         </li>
                         <li class="menu-item"><a href="<?php echo base_url(); ?>reports/supplierstatement"><?php echo $this->lang->line('Supplier_Account_Statements') ?></a>
@@ -741,38 +741,37 @@
     <?php }
                 if ($this->aauth->premission(9)) {
     ?>
-        <?php if ($this->aauth->get_user()->roleid != 4) { ?>
-            <li class="menu-item  has-sub <?php if ($this->li_a == "emp") {
-                                                echo ' open';
-                                            } ?>""><a href=" #"><i class="ft-file-text"></i><span><?php echo $this->lang->line('HRM') ?></span></a>
-                <ul class="menu-content">
-                    <li class="menu-item"><a href="#"><i class="ft-users"></i> <?php echo $this->lang->line('Employees') ?></a>
-                        <ul class="menu-content">
-                            <li class="menu-item"><a href="<?php echo base_url(); ?>employee"><?php echo $this->lang->line('Employees') ?></a>
-                            </li>
+        <li class="menu-item  has-sub <?php if ($this->li_a == "emp") {
+                                            echo ' open';
+                                        } ?>""><a href=" #"><i class="ft-file-text"></i><span><?php echo $this->lang->line('HRM') ?></span></a>
+            <ul class="menu-content">
+                <li class="menu-item"><a href="#"><i class="ft-users"></i> <?php echo $this->lang->line('Employees') ?></a>
+                    <ul class="menu-content">
+                        <li class="menu-item"><a href="<?php echo base_url(); ?>employee"><?php echo $this->lang->line('Employees') ?></a>
+                        </li>
+                        <li class="menu-item"><a href="<?php echo base_url(); ?>employee/salaries"><?= $this->lang->line('Salaries'); ?></a>
+                        </li>
+                        <?php if ($this->aauth->get_user()->roleid == 5) { ?>
                             <li class="menu-item"><a href="<?php echo base_url(); ?>employee/permissions"><?= $this->lang->line('Permissions'); ?></a>
-                            </li>
-                            <li class="menu-item"><a href="<?php echo base_url(); ?>employee/salaries"><?= $this->lang->line('Salaries'); ?></a>
                             </li>
                             <li class="menu-item"><a href="<?php echo base_url(); ?>employee/attendances"><?= $this->lang->line('Attendance'); ?></a>
                             </li>
                             <li class="menu-item"><a href="<?php echo base_url(); ?>employee/holidays"><?= $this->lang->line('Holidays'); ?></a>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
+                        <?php } ?>
+                    </ul>
+        </li>
+        <li class="menu-item">
                         <a href="<?php echo base_url(); ?>employee/departments"><i class="icon-folder"></i> <?php echo $this->lang->line('Departments'); ?></a>
                     </li>
-                    <li class="menu-item">
-                        <a href="<?php echo base_url(); ?>employee/payroll"><i class="icon-notebook"></i> <?php echo $this->lang->line('Payroll'); ?></a>
-                    </li>
-
-                </ul>
+        <?php if ($this->aauth->get_user()->roleid == 3) { ?>
+            <li class="menu-item">
+                <a href="<?php echo base_url(); ?>employee/payroll"><i class="icon-notebook"></i> <?php echo $this->lang->line('Payroll'); ?></a>
             </li>
         <?php } ?>
-        <?php if ($this->aauth->get_user()->roleid == 4) {  ?>
-            <li class="menu-item"><a href="<?php echo base_url(); ?>employee"><i class="ft-file-text"></i><span><?php echo $this->lang->line('Employees') ?></span></a>
-            </li>
+        </ul>
+        </li>
+        <?php if($this->aauth->get_user()->roleid == 4) {?>
             <li class="menu-item"><a href="<?php echo base_url(); ?>tools/setgoals"><i class="fa fa-bolt"></i><span><?php echo $this->lang->line('Set Goals') ?></span></a>
             </li>
         <?php } ?>
