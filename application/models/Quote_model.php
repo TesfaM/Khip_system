@@ -285,6 +285,7 @@ class Quote_model extends CI_Model
             $this->db->insert('geopos_metadata', $data);
 
             if ($this->db->trans_complete()) {
+                $this->db->set('converted', 1);
                 $this->db->set('status', 'accepted');
                 $this->db->where('id', $id);
                 $this->db->update('geopos_quotes');

@@ -22,15 +22,21 @@
                             <a href="#pop_model" data-toggle="modal" data-remote="false"
                                class="btn btn-large btn-success mb-1" title="Change Status"
                             ><span class="fa fa-retweet"></span> <?php echo $this->lang->line('Change Status') ?> </a>
-
-                            <a href="#pop_model2" data-toggle="modal" data-remote="false"
+                            <?php if ( $invoice['converted'] == 0) { ?>
+                                <a href="#pop_model2" data-toggle="modal" data-remote="false"
                                class="btn btn-large btn-info mb-1" title="Convert to Invoice"
                             ><span class="fa fa-share"></span> <?php echo $this->lang->line('Convert to Invoice') ?>
                             </a>
-                               <a href="#pop_model3" data-toggle="modal" data-remote="false"
+                            <?php } else { ?>
+                                    <button type="button" class="btn btn-large btn-danger mb-1" title="Convert to Invoice" disabled>
+                                    <span class="fa fa-share"></span> <?php echo $this->lang->line('Already Convert to Invoice') ?>
+                                    </button>
+                                <?php } ?>
+
+                               <!-- <a href="#pop_model3" data-toggle="modal" data-remote="false"
                                class="btn btn-large btn-blue-grey mb-1" title="Convert to Purchase"
                             ><span class="fa fa-share"></span> <?php echo $this->lang->line('Convert to Purchase') ?>
-                            </a>
+                            </a> -->
 
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle mb-1"
