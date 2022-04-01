@@ -187,6 +187,18 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="hero-widget well well-sm">
+
+
+                                            <div class="options">
+                                                <a href="<?php echo base_url('employee/updatepassword?id=' . $eid) ?>"
+                                                   class="btn btn-primary btn-block"><i
+                                                            class="fa fa-key"></i> <?php echo $this->lang->line('Change Password') ?>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-sm-6">
+                                        <div class="hero-widget well well-sm">
                                             <div class="icon">
                                                 <i class="icon-money4"></i>
                                             </div>
@@ -201,7 +213,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
                                 </div>
@@ -219,7 +231,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <!-- <div class="col-sm-6">
                                         <div class="hero-widget well well-sm">
 
 
@@ -230,7 +242,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
