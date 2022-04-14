@@ -6,7 +6,7 @@ $query_builder = TRUE;
 $hostname ='localhost';
 $username ='kehaiskepecom_kehaiskepecom';
 $password ='&cn}&dKipWM1';
-$database ='kehaiskepecom_sales';	
+$database ='kehaiskepecom_production';	
 
 $db['default'] = array(
 	'dsn'	=> '',
