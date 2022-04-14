@@ -123,7 +123,7 @@
                                        value="<?php echo $user['phonealt'] ?>">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
 
                             <label class="col-sm-2 col-form-label"
                                    for="email"><?php echo $this->lang->line('Email') ?></label>
@@ -133,7 +133,7 @@
                                        class="form-control margin-bottom  required" name="email"
                                        value="<?php echo $user['email'] ?>" disabled>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
 
                             <label class="col-sm-2 col-form-label"
