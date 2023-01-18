@@ -466,7 +466,8 @@
                                                         echo ' open';
                                                     } ?>"><a href="#"><i class="ft-layers"></i><span><?php echo $this->lang->line('Stock') ?></span></a>
                             <ul class="menu-content">
-                                <li class="menu-item"><a href="<?php echo base_url(); ?>productcategory/warehouse"><i class="ft-list"></i> <?php echo $this->lang->line('Items Manager') ?></a>
+                                <li class="menu-item"><a href="<?php echo base_url(); ?>products"><i class="ft-list"></i> <?php echo $this->lang->line('Items Manager') ?></a>
+                                <!-- <li class="menu-item"><a href="<?php echo base_url(); ?>productcategory/warehouse"><i class="ft-list"></i> <?php echo $this->lang->line('Items Manager') ?></a> -->
                                 </li>
                                 <li class="menu-item"><a href="<?php echo base_url(); ?>productcategory"><i class="ft-umbrella"></i><?php echo $this->lang->line('Product Categories'); ?>
                                     </a>
